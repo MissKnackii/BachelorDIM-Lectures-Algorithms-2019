@@ -84,3 +84,30 @@ def max_value(tab:list):
     return max,index_max
 
 print('Valeur max et index : ' + str(max_value(tab_list)))
+
+'''
+Reverse table 
+
+A<-0
+B<-0
+C<-0
+for i <- 1 to NMAX do 
+    A<-Tab[i]
+    B<-Tab[NMAX - i]
+    C<-B
+    A<-B
+    B<-C
+Display(Tab)
+'''
+a = 0
+b = 0
+c = 0
+
+for id in range(len(tab_list)):
+    a = tab_list[id]
+    b = tab_list[len(tab_list) - id]
+    c = b
+    a = b
+    b = c
+
+print(str(tab_list))
