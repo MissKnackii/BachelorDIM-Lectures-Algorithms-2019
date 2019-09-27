@@ -88,26 +88,32 @@ print('Valeur max et index : ' + str(max_value(tab_list)))
 '''
 Reverse table 
 
-A<-0
-B<-0
-C<-0
-for i <- 1 to NMAX do 
-    A<-Tab[i]
-    B<-Tab[NMAX - i]
-    C<-B
-    A<-B
-    B<-C
+Size <- NMAX
+Index <- Size - 1
+it <- Size/2
+
+for i <- 1 to it do 
+    Temp <- Tab[Index]
+    Tab[Index] <- Tab[i]
+    Tab[i] <- Temp
+    Index <- Index-1
 Display(Tab)
 '''
-a = 0
-b = 0
-c = 0
 
-for id in range(len(tab_list)):
-    a = tab_list[id]
-    b = tab_list[len(tab_list) - id]
-    c = b
-    a = b
-    b = c
+def reverse_table(tab):
+    ##
+    #Function to reverse a table
+    # @param array
+    
+    size = len(tab)
+    index = size -1
+    it = size // 2
+    
+    for id in range(it):
+        temp = tab[index]
+        tab[index] = tab[id]
+        tab[id] = temp
+        index = index - 1
+    return tab
 
-print(str(tab_list))
+print('Tableau inversé : ' + str(reverse_table(tab_list)))
