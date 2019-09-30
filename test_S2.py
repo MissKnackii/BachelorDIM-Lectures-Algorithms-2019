@@ -17,10 +17,8 @@ def test_average_above_zero():
     assert test == 3
 
 def test_average_divide_by_zero():
-    tab_empty = []
     tab_neg = [3-4,-9]
     with pytest.raises(ValueError):
-        #S1tested.average_above_zero(tab_empty)
         S1tested.average_above_zero(tab_neg)
         
 def test_average_list_expected():
@@ -28,5 +26,9 @@ def test_average_list_expected():
     with pytest.raises(ValueError):
         S1tested.average_above_zero(var)
 
+def test_average_non_empty_list():
+    tab_empty = []
+    with pytest.raises(ValueError):
+        S1tested.average_above_zero(tab_empty)
 
     
