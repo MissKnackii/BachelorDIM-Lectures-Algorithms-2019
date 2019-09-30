@@ -43,6 +43,12 @@ def test_average_above_zero_number_list_expected():
     with pytest.raises(ValueError):
         S1tested.average_above_zero(tab_of_char)
 
-
-
+#Test max_value
+def test_max_value():
+    ##
+    #Function to test the return of the maaximum value of a list
+    tab_list = [1,2,4,6,-9]
+    test, i = S1tested.max_value(tab_list)
+    assert test == 6
+    assert i == 3
     

@@ -57,6 +57,10 @@ def max_value(tab:list):
     
     if not(isinstance(tab, list)):
         raise ValueError('max_value, expected a list as input')
+    if len(tab) == 0:
+        raise ValueError('expected a non empty list as input')
+    if not(isinstance(tab[0], (int,float))):
+        raise ValueError('average_above_zero, expected a list of numbers')
     
     max = 0
     index_max = 0
@@ -86,6 +90,11 @@ def reverse_table(tab):
     ##
     #Function to reverse a table
     # @param array
+    
+    if not(isinstance(tab, list)):
+        raise ValueError('max_value, expected a list as input')
+    if len(tab) == 0:
+        raise ValueError('expected a non empty list as input')
     
     size = len(tab)
     index = size -1
