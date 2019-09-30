@@ -72,3 +72,5 @@ def test_maxValue_numberListExpected():
     tab_of_char = ['','']
     with pytest.raises(ValueError):
         S1tested.max_value(tab_of_char)
+
+#Reverse table
