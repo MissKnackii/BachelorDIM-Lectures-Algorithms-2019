@@ -51,4 +51,24 @@ def test_max_value():
     test, i = S1tested.max_value(tab_list)
     assert test == 6
     assert i == 3
-    
+
+def test_max_value_list_expected():
+    ##
+    #Function to test the launch of an error when the argument is not a list
+    var = 25
+    with pytest.raises(ValueError):
+        S1tested.max_value(var)
+        
+def test_max_value_non_empty_list():
+    ##
+    #Function to test the launch of an error when the list is empty
+    tab_empty = []
+    with pytest.raises(ValueError):
+        S1tested.max_value(tab_empty)
+        
+def test_max_value_number_list_expected():
+    ##
+    #Function to test the launch of an error when the list is composed by char
+    tab_of_char = ['','']
+    with pytest.raises(ValueError):
+        S1tested.max_value(tab_of_char)
