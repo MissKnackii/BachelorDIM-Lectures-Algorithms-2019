@@ -13,7 +13,7 @@ import pytest
 
 def test_average_above_zero():
     tab_list = [1,2,3-4,6,-9]
-    test, lastID=S1tested.average_above_zero(tab_list)
+    test, lastID = S1tested.average_above_zero(tab_list)
     assert test == 3
 
 
