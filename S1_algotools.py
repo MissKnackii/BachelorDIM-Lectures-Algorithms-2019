@@ -151,4 +151,3 @@ import cv2
 img = cv2.imread('img.png',0)
 
 print('Bounding box : ' + str(roi_bbox(img)))
-
