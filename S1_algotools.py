@@ -5,22 +5,8 @@ Created on Thu Sep 26 14:17:04 2019
 @author: chaulaic
 """
 
-print('Hello World!')
-
-myVar = 6
-print('MyVariable = ',myVar)
-
-'''If Som initialization is forgotten, Som will not be correct because the initialization will be ramdom'''
-'''The value of N and Som will stay at 0 so the program will crash because to initialize Moy we will divide by 0'''
-
-########
-tab_list = [1,2,3-4,6,-9]
-
 import numpy as np
-tab_zeros = np.zeros(12, dtype=np.int32) 
-tab_from_list = np.array(tab_list)
-#print('tab[' + str(id) + ']=' + str(tab_from_list[id]))
-#print('tab[{index}]={val}'.format(index=id, val=tab_from_list[id]))
+
     
 def average_above_zero(tab:list):
     ##
@@ -43,8 +29,6 @@ def average_above_zero(tab:list):
         raise ValueError('Division by 0 !!')
     
     return som / n
-
-print('Moyenne = ' + str(average_above_zero(tab_list)))
 
 '''
 Max <- 0
@@ -83,8 +67,6 @@ def max_value(tab:list):
             index_max = id
     return max,index_max
 
-print('Valeur max et index : ' + str(max_value(tab_list)))
-
 '''
 Reverse table 
 
@@ -99,7 +81,6 @@ for i <- 1 to it do
     Index <- Index-1
 Display(Tab)
 '''
-
 
 def reverse_table(tab):
     ##
@@ -117,16 +98,13 @@ def reverse_table(tab):
         index = index - 1
     return tab
 
-print('Tableau inversé : ' + str(reverse_table(tab_list)))
-
 ''' Bounding Box'''
 
+def roi_bbox(mat):
     ##
     #Function to compute the bounding box coordinates of an object
     # @param numpy array
     #returns numpy array
-
-def roi_bbox(mat):
     minCol = mat.shape[1]
     minRow = mat.shape[0]
     maxCol = 0
@@ -146,8 +124,3 @@ def roi_bbox(mat):
                     minCol = minRow
     bbox = np.array([[minCol,minRow], [maxCol,minRow], [minCol, maxRow], [maxCol,maxRow]])
     return bbox
-
-import cv2
-img = cv2.imread('img.png',0)
-
-print('Bounding box : ' + str(roi_bbox(img)))
