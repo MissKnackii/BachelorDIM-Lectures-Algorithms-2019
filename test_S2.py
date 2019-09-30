@@ -30,5 +30,10 @@ def test_average_non_empty_list():
     tab_empty = []
     with pytest.raises(ValueError):
         S1tested.average_above_zero(tab_empty)
+        
+def test_average_number_list_expected():
+    tab_of_char = ['','']
+    with pytest.raises(ValueError):
+        S1tested.average_above_zero(tab_of_char)
 
     
