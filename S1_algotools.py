@@ -100,6 +100,7 @@ for i <- 1 to it do
 Display(Tab)
 '''
 
+
 def reverse_table(tab):
     ##
     #Function to reverse a table
@@ -117,3 +118,37 @@ def reverse_table(tab):
     return tab
 
 print('Tableau inversé : ' + str(reverse_table(tab_list)))
+
+''' Bounding Box'''
+
+
+
+def roi_bbox(mat):
+    ##
+    #Function to compute the bounding box coordinates of an object
+    # @param numpy array
+    #returns numpy array
+    
+    minCol = mat.shape[1]
+    minRow = mat.shape[0]
+    maxCol = 0
+    maxRow = 0
+    
+    for idRow in range(mat.shape[0]):
+        for idCol in range(mat.shape[1]):
+            pixVal = mat[idRow,idCol]
+            if pixVal != 0:
+                if idRow > maxRow:
+                    maxRow = idRow
+                if idCol > maxCol:
+                    maxCol = idCol
+                if idRow < minRow:
+                    minRow = idRow
+                if idCol < minCol:
+                    minCol = minRow
+    bbox = np.array([[minCol,minRow], [maxCol,minRow], [minCol, maxRow], [maxCol,maxRow]])
+    return bbox
+
+import cv2
+img = cv2.imread('img.png',0)
+print('Bounding box : ' + str(roi_bbox(img)))
