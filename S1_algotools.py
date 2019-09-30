@@ -121,14 +121,12 @@ print('Tableau inversé : ' + str(reverse_table(tab_list)))
 
 ''' Bounding Box'''
 
-
-
-def roi_bbox(mat):
     ##
     #Function to compute the bounding box coordinates of an object
     # @param numpy array
     #returns numpy array
-    
+
+def roi_bbox(mat):
     minCol = mat.shape[1]
     minRow = mat.shape[0]
     maxCol = 0
@@ -151,4 +149,6 @@ def roi_bbox(mat):
 
 import cv2
 img = cv2.imread('img.png',0)
+
 print('Bounding box : ' + str(roi_bbox(img)))
+
