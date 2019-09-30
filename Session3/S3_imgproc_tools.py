@@ -8,7 +8,7 @@ Created on Mon Sep 30 13:31:19 2019
 import cv2
 import numpy as np
 
-img = cv2.imread('/Algo/BachelorDIM-Lectures-Algorithms-2019/Session3/trump.jpg')
+img = cv2.imread('/Algo/BachelorDIM-Lectures-Algorithms-2019/Session3/winx.jpg')
 cv2.imshow('input',img)
 cv2.waitKey()
 

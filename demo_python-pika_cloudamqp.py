@@ -11,7 +11,7 @@ import os
 import pika
 
 
-mode='_SEND' #set 'SEND' mode is you will to send rather than receive messages
+mode='SEND' #set 'SEND' mode is you will to send rather than receive messages
 
 
 def callback(ch, method, properties, body):
@@ -19,7 +19,7 @@ def callback(ch, method, properties, body):
 
 
 
-amqp_url='amqp://jalwjmqg:xDVxbg8pr7tJ5X3WPS7aEFvXf0_yTD56@lark.rmq.cloudamqp.com/jalwjmqg'
+amqp_url='amqp://vqbglcjd:KkkkA2d9liN9DioGJpQBe7xhwgwDsGDO@dove.rmq.cloudamqp.com/vqbglcjd'
 
 
 # Parse CLODUAMQP_URL (fallback to localhost)
