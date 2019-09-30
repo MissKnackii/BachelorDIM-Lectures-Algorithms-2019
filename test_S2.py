@@ -19,7 +19,7 @@ def test_average_above_zero():
 def test_average_divide_by_zero():
     tab_empty = []
     tab_neg = [3-4,-9]
-    with pytest.raises(ZeroDivisionError):
+    with pytest.raises(ValueError):
         #S1tested.average_above_zero(tab_empty)
         S1tested.average_above_zero(tab_neg)
         
