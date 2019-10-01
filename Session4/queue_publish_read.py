@@ -14,14 +14,18 @@ parser.add_argument("--read", help="Launch reading script",
 
 args = parser.parse_args()
 
-cpt = 0
+cpt = 0 #Counter to know the num of message received
 
 if args.read == True :
     
     print('Reading')
     
     def callback(ch, method, properties, body):
+        #Function callback call every time the channel received a message 
         print(" [x] Received %r" % body)
+        global cpt
+        cpt += 1
+        print(str(cpt) + ' message(s) reçu(s)')
 
     amqp_url='amqp://vqbglcjd:lUp91qezVmYJkFh9ct5AOdHeFspespmv@dove.rmq.cloudamqp.com/vqbglcjd'
     
@@ -39,7 +43,7 @@ if args.read == True :
     
     print(' [*] Waiting for messages. To exit press CTRL+C')
     channel.start_consuming()
-    cpt = cpt + 1
+    print('coucou')
     
 else:
     print('Publishing')
@@ -59,5 +63,3 @@ else:
                           body='Camille CHAULAIC')
     print("[x] Sent 'Camille CHAULAIC'")
     connection.close()
-    
-print('Compteur = ' + str(cpt))
