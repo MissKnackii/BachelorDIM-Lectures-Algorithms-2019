@@ -1,0 +1,63 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct  1 08:55:21 2019
+
+@author: chaulaic
+"""
+import os
+import pika 
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--read", help="Launch reading script",
+                    action="store_true")
+
+args = parser.parse_args()
+
+cpt = 0
+
+if args.read == True :
+    
+    print('Reading')
+    
+    def callback(ch, method, properties, body):
+        print(" [x] Received %r" % body)
+
+    amqp_url='amqp://vqbglcjd:lUp91qezVmYJkFh9ct5AOdHeFspespmv@dove.rmq.cloudamqp.com/vqbglcjd'
+    
+    url = os.environ.get('CLOUDAMQP_URL',amqp_url)
+    params = pika.URLParameters(url)
+    params.socket_timeout = 5
+    
+    connection = pika.BlockingConnection(params)
+    channel = connection.channel()
+    channel.queue_declare(queue='test')
+    
+    channel.basic_consume(queue='test',
+                          on_message_callback=callback,
+                          auto_ack=True)
+    
+    print(' [*] Waiting for messages. To exit press CTRL+C')
+    channel.start_consuming()
+    cpt = cpt + 1
+    
+else:
+    print('Publishing')
+    
+    amqp_url='amqp://vqbglcjd:lUp91qezVmYJkFh9ct5AOdHeFspespmv@dove.rmq.cloudamqp.com/vqbglcjd'
+    
+    url = os.environ.get('CLOUDAMQP_URL',amqp_url)
+    params = pika.URLParameters(url)
+    params.socket_timeout = 5
+    
+    connection = pika.BlockingConnection(params)
+    channel = connection.channel()
+    channel.queue_declare(queue='test')
+    
+    channel.basic_publish(exchange='',
+                          routing_key='test',
+                          body='Camille CHAULAIC')
+    print("[x] Sent 'Camille CHAULAIC'")
+    connection.close()
+    
+print('Compteur = ' + str(cpt))
