@@ -21,7 +21,8 @@ if args.read == True :
     print('Reading')
     
     def callback(ch, method, properties, body):
-        #Function callback call every time the channel received a message 
+        #Function callback call every time the channel received a message
+        #Display message
         print(" [x] Received %r" % body)
         global cpt
         cpt += 1
@@ -35,9 +36,9 @@ if args.read == True :
     
     connection = pika.BlockingConnection(params)
     channel = connection.channel()
-    channel.queue_declare(queue='test')
+    channel.queue_declare(queue='presentation')
     
-    channel.basic_consume(queue='test',
+    channel.basic_consume(queue='presentation',
                           on_message_callback=callback,
                           auto_ack=True)
     
@@ -56,10 +57,10 @@ else:
     
     connection = pika.BlockingConnection(params)
     channel = connection.channel()
-    channel.queue_declare(queue='test')
+    channel.queue_declare(queue='presentation')
     
     channel.basic_publish(exchange='',
-                          routing_key='test',
+                          routing_key='presentation',
                           body='Camille CHAULAIC')
     print("[x] Sent 'Camille CHAULAIC'")
     connection.close()
