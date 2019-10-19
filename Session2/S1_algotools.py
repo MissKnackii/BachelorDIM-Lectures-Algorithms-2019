@@ -118,20 +118,25 @@ def reverse_table(tab):
 
 ''' Bounding Box'''
 
-def roi_bbox(mat):
+def roi_bbox(input_image):
     ##
     #Function to compute the bounding box coordinates of an object
     # @param numpy array
     # returns numpy array
+
+    if not(isinstance(input_image,np.ndarray)):
+        raise ValueError('roi_bbox, expected a numpy array as input')
+    if len(input_image) == 0:
+        raise ValueError('roi_bbox, expected a non empty array as input')
     
-    minCol = mat.shape[1]
-    minRow = mat.shape[0]
+    minCol = input_image.shape[1]
+    minRow = input_image.shape[0]
     maxCol = 0
     maxRow = 0
     
-    for idRow in range(mat.shape[0]):
-        for idCol in range(mat.shape[1]):
-            pixVal = mat[idRow,idCol]
+    for idRow in range(input_image.shape[0]):
+        for idCol in range(input_image.shape[1]):
+            pixVal = input_image[idRow,idCol]
             if pixVal != 0:
                 if idRow > maxRow:
                     maxRow = idRow
