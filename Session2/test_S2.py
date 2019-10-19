@@ -76,7 +76,7 @@ def test_maxValue_numberListExpected():
 
 #Reverse table
 
-def test_reverseTable_correct():
+def test_reverseTable_returnReverseTable():
     tab_list=[1,2,3,-4,6,-9] 
     assert s1.reverse_table(tab_list) == [-9, 6,-4, 3, 2, 1]
 
@@ -87,3 +87,20 @@ def test_reverseTable_listExpected():
 def test_reverseTable_nonEmptyListExpected():
     with pytest.raises(ValueError):
         s1.reverse_table([]) 
+
+#Bounding Box
+
+import cv2
+import numpy as np
+
+def test_roiBbox_correct():
+    img=cv2.imread('img.png',0)
+    assert (s1.roi_bbox(img) == np.array([[ 91,  95], [ 91, 523], [434, 523], [434,  95]])).prod()
+
+def test_roiBbox_NumpyArrayExpected():
+    with pytest.raises(TypeError):
+        s1.roi_bbox(3)
+
+def test_roiBbox_nonEmptyArrayExpected():
+    with pytest.raises(ValueError):
+        s1.roi_bbox(np.array([])) 
