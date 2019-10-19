@@ -8,6 +8,7 @@ import S1_algotools as S1tested
 import pytest
 
 #Test average_above_zero
+
 def test_averageAboveZero_ReturnAver():
     ##
     #Function to test the return of the good average of a list
@@ -59,7 +60,7 @@ def test_maxValue_listExpected():
     with pytest.raises(ValueError):
         S1tested.max_value(var)
         
-def test_maxValue_nonEmptyList():
+def test_maxValue_nonEmptyListExpected():
     ##
     #Function to test the launch of an error when the list is empty
     tab_empty = []
@@ -74,3 +75,15 @@ def test_maxValue_numberListExpected():
         S1tested.max_value(tab_of_char)
 
 #Reverse table
+
+def test_reverseTable_correct():
+    tab_list=[1,2,3,-4,6,-9] 
+    assert s1.reverse_table(tab_list) == [-9, 6,-4, 3, 2, 1]
+
+def test_reverseTable_listExpected():
+    with pytest.raises(ValueError):
+        s1.reverse_table(3)
+
+def test_reverseTable_nonEmptyListExpected():
+    with pytest.raises(ValueError):
+        s1.reverse_table([]) 
