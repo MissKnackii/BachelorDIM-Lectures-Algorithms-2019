@@ -14,7 +14,12 @@ cv2.waitKey()
 
 print('image shape: ',img.shape)
 
-def invert_colors_manual(input_img):   
+def invert_colors_manual(input_img): 
+	##
+	#Transform the input image by inverted colors
+	#@param ndarray
+	#return ndarray
+	  
     for row in range(input_img.shape[0]):
         for col in range(input_img.shape[1]):
             for cha in range(input_img.shape[2]):
