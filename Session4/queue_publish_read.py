@@ -4,63 +4,28 @@ Created on Tue Oct  1 08:55:21 2019
 
 @author: chaulaic
 """
-import os
-import pika 
+
+
+
+
 import argparse
+import simple_queue_publish as publish
+import simple_queue_read as read
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--read", help="Launch reading script",
-                    action="store_true")
+
+parser.add_argument("--read", action="store_true",
+                    help="Launch reading script")
+parser.add_argument("--publish", action="store_true",
+                    help="Launch publish script")
+parser.add_argument("--concurrency", action="store_true",
+                    help="Activate persitent messages")
 
 args = parser.parse_args()
 
-cpt = 0 #Counter to know the num of message received
-
-if args.read == True :
-    
-    print('Reading')
-    
-    def callback(ch, method, properties, body):
-        #Function callback call every time the channel received a message
-        #Display message
-        print(" [x] Received %r" % body)
-        global cpt
-        cpt += 1
-        print(str(cpt) + ' message(s) reçu(s)')
-
-    amqp_url='amqp://vqbglcjd:lUp91qezVmYJkFh9ct5AOdHeFspespmv@dove.rmq.cloudamqp.com/vqbglcjd'
-    
-    url = os.environ.get('CLOUDAMQP_URL',amqp_url)
-    params = pika.URLParameters(url)
-    params.socket_timeout = 5
-    
-    connection = pika.BlockingConnection(params)
-    channel = connection.channel()
-    channel.queue_declare(queue='presentation')
-    
-    channel.basic_consume(queue='presentation',
-                          on_message_callback=callback,
-                          auto_ack=True)
-    
-    print(' [*] Waiting for messages. To exit press CTRL+C')
-    channel.start_consuming()
-    print('coucou')
-    
+if(args.read):
+    read.simple_queue_read(args.concurrency)
+elif(args.publish):
+    publish.simple_queue_publish(args.concurrency)
 else:
-    print('Publishing')
-    
-    amqp_url='amqp://vqbglcjd:lUp91qezVmYJkFh9ct5AOdHeFspespmv@dove.rmq.cloudamqp.com/vqbglcjd'
-    
-    url = os.environ.get('CLOUDAMQP_URL',amqp_url)
-    params = pika.URLParameters(url)
-    params.socket_timeout = 5
-    
-    connection = pika.BlockingConnection(params)
-    channel = connection.channel()
-    channel.queue_declare(queue='presentation')
-    
-    channel.basic_publish(exchange='',
-                          routing_key='presentation',
-                          body='Camille CHAULAIC')
-    print("[x] Sent 'Camille CHAULAIC'")
-    connection.close()
+    print("Please specify -r to read or -p to publish")
